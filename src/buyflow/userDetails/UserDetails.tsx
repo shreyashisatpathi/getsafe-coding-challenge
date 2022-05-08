@@ -1,34 +1,34 @@
 import React, { useState } from 'react'
 
 interface UserDetailsProps {
-    cb: (field: string, value: string) => void
-  }
-  const re = /^[a-z,.'-]+$/i;
+  cb: (field: string, value: string) => void
+}
+const re = /^[a-z,.'-]+$/i;
 
-  const UserDetails: React.FC<UserDetailsProps> = (props) => {
-    const [firstName, setFirstName] = useState('')
-    const [lastName,setLastName] = useState('')
-    const [firstNameError, setFirstNameError] = useState(false)
-    const [lastNameError, setLastNameError] = useState(false)
+const UserDetails: React.FC<UserDetailsProps> = (props) => {
+  const [firstName, setFirstName] = useState('')
+  const [lastName, setLastName] = useState('')
+  const [firstNameError, setFirstNameError] = useState(false)
+  const [lastNameError, setLastNameError] = useState(false)
 
-    const isValidFirstName = re.test(firstName)
-    const isValidLastName = re.test(lastName)
-  
-    function onClickHandler(){
-      if(isValidFirstName && isValidLastName){
-        props.cb('name', firstName + ' ' +lastName)  
-      }
-      if(!isValidFirstName){
-        setFirstNameError(true)
-      }
-      if(!isValidLastName){
-        setLastNameError(true)
-      }
+  const isValidFirstName = re.test(firstName)
+  const isValidLastName = re.test(lastName)
+
+  function onClickHandler() {
+    if (isValidFirstName && isValidLastName) {
+      props.cb('name', firstName + ' ' + lastName)
     }
+    if (!isValidFirstName) {
+      setFirstNameError(true)
+    }
+    if (!isValidLastName) {
+      setLastNameError(true)
+    }
+  }
 
-    
-    return (
-      <>
+
+  return (
+    <>
       <div>
         FirstName:{' '}
         <input
@@ -50,7 +50,7 @@ interface UserDetailsProps {
           }}
           value={lastName}
         ></input>
-        
+
       </div>
       {firstNameError && <p> First Name is invalid</p>}
       {lastNameError && <p> Last Name is invalid</p>}
@@ -58,9 +58,8 @@ interface UserDetailsProps {
     </>
   )
 }
-    
-  export default UserDetails;
+
+export default UserDetails;
 
 
 
-  

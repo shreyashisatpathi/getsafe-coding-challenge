@@ -7,7 +7,7 @@ describe('Age Step', () => {
     it("for invalid age input should show correct error message", async () => {
         const user = userEvent.setup()
         render(<AgeStep cb={() => { }}></AgeStep>)
-        const ageInput = screen.getByRole('spinbutton', {name: /age:/i})
+        const ageInput = screen.getByRole('spinbutton', { name: /age:/i })
         await user.type(ageInput, '125')
         clickNextButton()
         const warningMsg = screen.getByText(/Age is invalid age must be between 0 to 100/i)

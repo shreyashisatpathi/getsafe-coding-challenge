@@ -15,12 +15,15 @@ test('render buyflow of Developer Insurance', async () => {
   render(<App />)
   const user = userEvent.setup()
   
+  //Action
   const devLinkElement = screen.getByText(/Get started for Developer/i)
   expect(devLinkElement).toBeInTheDocument()
 
   await user.click(devLinkElement)
 
   const linkElement = screen.getByText(/Buying Developer Insurance/i)
+
+  //Assertion
   expect(linkElement).toBeInTheDocument()
   await user.click(devLinkElement)
 })

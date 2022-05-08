@@ -11,8 +11,8 @@ const EmailStep: React.FC<EmailStepProps> = (props) => {
 
   const isValidEmail = (): boolean => re.test(email)
 
-  function onClickHandler():any{
-    const validEmail = isValidEmail() 
+  function onClickHandler() {
+    const validEmail = isValidEmail()
     validEmail ? props.cb('email', email) : setEmailErr(true)
   }
 
