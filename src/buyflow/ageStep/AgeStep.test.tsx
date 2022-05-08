@@ -1,4 +1,4 @@
-import { fireEvent, render, screen, waitFor } from '@testing-library/react'
+import { fireEvent, render, screen } from '@testing-library/react'
 import AgeStep from './AgeStep'
 import userEvent from '@testing-library/user-event'
 
