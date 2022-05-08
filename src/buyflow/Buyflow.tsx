@@ -32,31 +32,29 @@ const Buyflow: React.FC<BuyflowProps> = (props) => {
     setStep(nextStep)
   }
 
-  const getSteps:any = ()=> {
+  const getEmailStep = () => currentStep === 'email' && <EmailStep cb={getStepCallback('age')} />
+  const getAgeStep = (nextStep: string) => currentStep === 'age' && <AgeStep cb={getStepCallback(nextStep)} />
+  const getUserDetails = () => currentStep === 'name' && <UserDetails cb={getStepCallback('summary')} />
+  const getSummaryStep = () => currentStep === 'summary' && <SummaryStep collectedData={collectedData} />
+
+  const getSteps: any = () => {
     switch (props.productId) {
       case ProductIds.designerIns:
-          return (currentStep === 'email' && <EmailStep cb={getStepCallback('age')} />) ||
-          (currentStep === 'age' && (
-          <AgeStep cb={getStepCallback('name')} />
-          )) ||
-          (currentStep === 'name' && (
-          <UserDetails cb={getStepCallback('summary')} />
-          )) ||
-          (currentStep === 'summary' &&  (
-          <SummaryStep collectedData={collectedData} />
-            ))
-  case ProductIds.devIns:
-     return  (currentStep === 'email' && <EmailStep cb={getStepCallback('age')} />) ||
-      (currentStep === 'age' && (
-        <AgeStep cb={getStepCallback('summary')} />
-      )) ||
-      (currentStep === 'summary' &&  (
-        <SummaryStep collectedData={collectedData} />
-      ))
-    default:
-      return null
+        return getEmailStep() ||
+          getAgeStep('name') ||
+          getUserDetails() ||
+          getSummaryStep()
+
+      case ProductIds.devIns:
+        return getEmailStep() ||
+          getAgeStep('summary') ||
+          getSummaryStep()
+      default:
+        return null
+    }
+
+
   }
-}
   return (
     <>
       <h4>Buying {PRODUCT_IDS_TO_NAMES[props.productId]}</h4>
